@@ -1,3 +1,6 @@
+typeset -U path
+path=("$HOME/.local/bin" /opt/homebrew/bin /opt/homebrew/sbin $path)
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -13,6 +16,10 @@ bindkey -e
 
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
+fi
+
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
 fi
 
 rationalise-dot() {

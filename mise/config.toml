@@ -1,0 +1,4 @@
+[tools]
+node = "lts"
+"npm:typescript" = "latest"
+rust = { version = "stable", profile = "minimal", components = ["clippy", "rustfmt"] }
