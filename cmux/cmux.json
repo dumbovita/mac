@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "appearance": "dark",
+    "workspaceInheritWorkingDirectory": false,
+    "minimalMode": true,
+    "hideTabCloseButton": true,
+    "confirmQuit": "dirty-only",
+    "warnBeforeClosingTab": false,
+    "sendAnonymousTelemetry": false
+  },
+  "paneBorderColor": "#343331",
+  "activePaneBorderColor": "#4385BE",
+  "terminal": {
+    "scrollSpeed": 0.9
+  },
+  "notifications": {
+    "sound": "none",
+    "showInMenuBar": false,
+    "paneFlash": false,
+    "agentIdleReminder": false
+  },
+  "sidebar": {
+    "branchLayout": "inline",
+    "notificationMessageLineLimit": 3,
+    "showPullRequests": false,
+    "watchGitStatus": false,
+    "showSSH": false,
+    "showPorts": false,
+    "showLog": false,
+    "showCustomMetadata": false,
+    "loadingSpinnerPosition": "trailing"
+  },
+  "sidebarAppearance": {
+    "matchTerminalBackground": true
+  },
+  "workspaceColors": {
+    "indicatorStyle": "washRail",
+    "selectionColor": "#282726",
+    "notificationBadgeColor": "#D0A215",
+    "colors": {
+      "Red": "#AF3029",
+      "Orange": "#BC5215",
+      "Yellow": "#AD8301",
+      "Green": "#66800B",
+      "Cyan": "#24837B",
+      "Blue": "#205EA6",
+      "Purple": "#5E409D",
+      "Magenta": "#A02F6F",
+      "Charcoal": "#575653"
+    }
+  }
+}
