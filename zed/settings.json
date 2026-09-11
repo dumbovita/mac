@@ -1,0 +1,87 @@
+{
+  "disable_ai": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": ".ZedMono",
+  "buffer_font_fallbacks": [
+    "Menlo",
+    "Monaco"
+  ],
+  "buffer_font_features": {
+    "calt": true
+  },
+  "tab_size": 4,
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+  "cursor_blink": false,
+  "cursor_shape": "bar",
+  "show_whitespaces": "selection",
+  "scroll_beyond_last_line": "off",
+  "vertical_scroll_margin": 3,
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "show_diagnostics": "errors",
+    "close_position": "right"
+  },
+  "project_panel": {
+    "auto_reveal_entries": true,
+    "entry_spacing": "comfortable"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "terminal": {
+    "copy_on_select": true,
+    "blinking": "off",
+    "cursor_shape": "block",
+    "font_size": 15
+  },
+  "languages": {
+    "JSON": {
+      "tab_size": 2
+    },
+    "YAML": {
+      "tab_size": 2
+    },
+    "TOML": {
+      "tab_size": 2
+    },
+    "Markdown": {
+      "tab_size": 2,
+      "soft_wrap": "editor_width"
+    }
+  },
+  "auto_install_extensions": {
+    "material-icon-theme": true,
+    "git-firefly": true,
+    "env": true,
+    "html": true,
+    "ini": true,
+    "toml": true,
+    "lua": true,
+    "log": true,
+    "csv": true,
+    "jq": true,
+    "make": true,
+    "just": true,
+    "pbxproj": true,
+    "objective-c": true,
+    "github-actions": true
+  }
+}
