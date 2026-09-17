@@ -31,6 +31,7 @@ macos-option-as-alt = true
 
 keybind = global:cmd+enter=toggle_quick_terminal
 quick-terminal-position = center
+quick-terminal-size = 75%,80%
 
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 

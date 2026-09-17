@@ -15,6 +15,11 @@
   "terminal": {
     "scrollSpeed": 0.9
   },
+  "shortcuts": {
+    "bindings": {
+      "toggleChecklistItemComplete": null
+    }
+  },
   "notifications": {
     "sound": "none",
     "showInMenuBar": false,
