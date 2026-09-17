@@ -1,5 +1,6 @@
 [settings]
 idiomatic_version_file = true
+quiet = true
 
 [tools]
 bun = "latest"
