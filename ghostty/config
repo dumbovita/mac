@@ -30,7 +30,7 @@ macos-titlebar-style = tabs
 macos-option-as-alt = true
 
 keybind = global:cmd+enter=toggle_quick_terminal
-quick-terminal-position = top
+quick-terminal-position = center
 
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 
