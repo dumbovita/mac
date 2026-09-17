@@ -1,4 +1,4 @@
-font-size = 16
+font-size = 17
 
 theme = light:Flexoki Light,dark:Flexoki Dark
 background-opacity = 0.90
@@ -11,9 +11,13 @@ window-padding-color = extend
 
 cursor-style-blink = false
 cursor-text = cell-foreground
+cursor-click-to-move = true
 
 scrollback-limit = 20000000
 mouse-hide-while-typing = true
+
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
 
 bell-features = no-audio,no-system,no-attention,no-title,no-border
 link-previews = false
@@ -21,6 +25,12 @@ link-previews = false
 working-directory = home
 window-inherit-working-directory = false
 confirm-close-surface = false
+
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+
+keybind = global:cmd+enter=toggle_quick_terminal
+quick-terminal-position = top
 
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 

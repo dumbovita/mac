@@ -1,0 +1,42 @@
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+	default = current
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[rebase]
+	autoStash = true
+	updateRefs = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[merge]
+	conflictStyle = zdiff3
+
+[core]
+	editor = nvim
+	excludesfile = ~/.config/git/ignore
+	quotepath = false
+
+[help]
+	autocorrect = prompt
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[rerere]
+	enabled = true
+	autoupdate = true

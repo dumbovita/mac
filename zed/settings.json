@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "existing_window",
   "disable_ai": true,
   "telemetry": {
     "diagnostics": false,
@@ -25,6 +26,9 @@
   "autosave": "on_focus_change",
   "cursor_blink": false,
   "cursor_shape": "bar",
+  "cursor_animation": {
+    "enabled": true
+  },
   "show_whitespaces": "selection",
   "scroll_beyond_last_line": "off",
   "vertical_scroll_margin": 3,

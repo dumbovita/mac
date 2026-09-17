@@ -1,4 +1,9 @@
+[settings]
+idiomatic_version_file = true
+
 [tools]
+bun = "latest"
+go = "latest"
 node = "lts"
 "npm:typescript" = "latest"
 rust = { version = "stable", profile = "minimal", components = ["clippy", "rustfmt"] }

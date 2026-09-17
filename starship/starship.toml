@@ -1,0 +1,96 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$package\
+$nodejs\
+$rust\
+$golang\
+$python\
+$docker_context\
+$jobs\
+$cmd_duration\
+$status\
+$line_break\
+$character"""
+
+continuation_prompt = "[▸▹ ](bright-black)"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " ◈"
+read_only_style = "red"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[git_branch]
+style = "bright-black"
+format = " [$branch]($style)"
+
+[git_status]
+style = "cyan"
+format = "([ $all_status$ahead_behind]($style))"
+conflicted = "◪ "
+ahead = "▴${count} "
+behind = "▿${count} "
+diverged = "◇ ▴${ahead_count}▿${behind_count} "
+untracked = "◌ "
+modified = "● "
+staged = "▪ "
+renamed = "◎ "
+deleted = "✕ "
+stashed = "≡ "
+
+[git_state]
+style = "bright-black"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[cmd_duration]
+min_time = 2000
+style = "yellow"
+format = "[◄ $duration]($style) "
+
+[status]
+disabled = false
+style = "bold red"
+format = "[$symbol$status]($style) "
+symbol = "✕ "
+
+[jobs]
+style = "white"
+symbol = "▶ "
+format = "[$symbol$number]($style) "
+
+[nodejs]
+style = "bold green"
+format = "via [⬢ $version]($style) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+[rust]
+style = "bold red"
+format = "via [⊃ $version]($style) "
+detect_files = ["Cargo.toml"]
+
+[golang]
+style = "bold cyan"
+format = "via [∩ $version]($style) "
+detect_files = ["go.mod", "go.work"]
+
+[python]
+style = "bold yellow"
+format = 'via [py ${version}( ($virtualenv))]($style) '
+detect_files = [".python-version", "pyproject.toml", "requirements.txt"]
+
+[package]
+disabled = true
