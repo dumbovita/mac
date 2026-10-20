@@ -69,6 +69,11 @@
     "Markdown": {
       "tab_size": 2,
       "soft_wrap": "editor_width"
+    },
+    "Ruby": {
+      "language_servers": [
+        "!solargraph"
+      ]
     }
   },
   "auto_install_extensions": {

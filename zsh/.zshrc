@@ -1,24 +1,41 @@
-typeset -U path
-path=("$HOME/.local/bin" /opt/homebrew/bin /opt/homebrew/sbin $path)
+typeset -U path fpath
+if [[ -d /opt/homebrew ]]; then
+  HOMEBREW_PREFIX="/opt/homebrew"
+elif [[ -d /usr/local/Homebrew || -d /usr/local/bin/brew ]]; then
+  HOMEBREW_PREFIX="/usr/local"
+fi
+
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+  path=("$HOME/.local/bin" "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $path)
+  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+else
+  path=("$HOME/.local/bin" $path)
+fi
 
 export EDITOR='nvim'
 export VISUAL='nvim'
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
 
-setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS INC_APPEND_HISTORY
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS
 unsetopt NOMATCH
 
 autoload -Uz compinit
-for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
-  compinit
-  break
-done
-compinit -C
+() {
+  local dump="${ZDOTDIR:-$HOME}/.zcompdump"
+  local -a old_dump=("$dump"(N.mh+24))
+  if [[ ! -s "$dump" || -n "$old_dump" ]]; then
+    compinit
+    zcompile "$dump" 2>/dev/null &!
+  else
+    compinit -C
+  fi
+}
 bindkey -e
 bindkey '^[[1;3D' backward-word
 bindkey '^[[1;3C' forward-word
@@ -55,6 +72,10 @@ if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh)"
 fi
 
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi
+
 if (( $+commands[eza] )); then
   alias ls='eza --icons=auto --git --group-directories-first'
   alias tree='eza --icons=auto --git --tree --group-directories-first'
@@ -88,6 +109,9 @@ extract() {
     case "${file:l}" in
       *.tar.bz2|*.tbz2|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar.zst|*.tar)
         tar -xf "$file"
+        ;;
+      *.zst)
+        unzstd -k "$file"
         ;;
       *.bz2)
         bunzip2 -k "$file"
@@ -131,17 +155,31 @@ alias gll='git log'
 alias gpl='git pull'
 alias gf='git fetch'
 
-if [[ -r /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]]; then
-  source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-  antidote load "${${(%):-%x}:A:h}/.zsh_plugins.txt"
-  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-  zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-  [[ -n "$terminfo[kcuu1]" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
-  [[ -n "$terminfo[kcud1]" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
-fi
+() {
+  local antidote_script="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh"
 
-if (( $+commands[starship] )); then
-  eval "$(starship init zsh)"
-fi
+  if [[ -r "$antidote_script" ]]; then
+    source "$antidote_script"
+    antidote load
+    if (( $+commands[eza] )); then
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+      zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+    fi
+    zmodload zsh/terminfo 2>/dev/null
+    if (( $+widgets[history-substring-search-up] && $+widgets[history-substring-search-down] )); then
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      bindkey '^[OA' history-substring-search-up
+      bindkey '^[OB' history-substring-search-down
+      [[ -n "$terminfo[kcuu1]" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
+      [[ -n "$terminfo[kcud1]" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
+    else
+      bindkey '^[[A' up-line-or-history
+      bindkey '^[[B' down-line-or-history
+      bindkey '^[OA' up-line-or-history
+      bindkey '^[OB' down-line-or-history
+      [[ -n "$terminfo[kcuu1]" ]] && bindkey "$terminfo[kcuu1]" up-line-or-history
+      [[ -n "$terminfo[kcud1]" ]] && bindkey "$terminfo[kcud1]" down-line-or-history
+    fi
+  fi
+}

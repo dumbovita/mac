@@ -7,7 +7,6 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$package\
 $nodejs\
 $rust\
 $golang\
@@ -91,6 +90,3 @@ detect_files = ["go.mod", "go.work"]
 style = "bold yellow"
 format = 'via [py ${version}( ($virtualenv))]($style) '
 detect_files = [".python-version", "pyproject.toml", "requirements.txt"]
-
-[package]
-disabled = true

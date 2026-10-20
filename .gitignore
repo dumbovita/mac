@@ -1,2 +1,3 @@
-/zsh/.zsh_plugins.zsh
+/zsh/.zsh_plugins.zsh*
 /zsh/.zcompdump*
+*.zwc
